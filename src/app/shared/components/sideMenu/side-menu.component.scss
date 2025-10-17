@@ -1,0 +1,11 @@
+.avatar-container {
+  display: flex;
+  justify-content: flex-end; /* Mueve el avatar a la derecha */
+  padding: 10px;
+}
+
+ion-avatar {
+  width: 50px;  /* Más pequeño */
+  height: 50px; /* Más pequeño */
+  justify-self: right;
+}

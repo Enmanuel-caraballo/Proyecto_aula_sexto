@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>smart-chat</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+</ion-content>
+
+<ion-footer class="ion-padding">
+
+  <form [formGroup]="formChat" (ngSubmit)="askToGpt()" (keyup.enter)="askToGpt()">
+
+    <ion-item class="text-box-item">
+      <ion-textarea formControlName="promt" autoGrow="true" placeholder="Consulta algo..."></ion-textarea>
+      <ion-buttons slot="end">
+        <ion-button type="submit">
+          <ion-icon name="send"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+
+
+  </form>
+</ion-footer>

@@ -1,0 +1,10 @@
+<ion-select
+[placeholder]="placeholder"
+class="border_blue"
+(ionChange)="onSelect($event)"
+>
+  <ion-select-option *ngFor="let item of itemSelect" [value]="item.value">
+     {{item.title}}
+  </ion-select-option>
+
+</ion-select>
