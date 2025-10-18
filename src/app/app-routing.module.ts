@@ -23,10 +23,15 @@ const routes: Routes = [
     loadChildren: () => import('./pages/smart-chat/smart-chat.module').then( m => m.SmartChatPageModule)
   },
   {
+    path: 'user-setting',
+    loadChildren: () => import('./pages/user-setting/user-setting.module').then( m => m.UserSettingPageModule)
+  },
+  {
     path: '**',
     redirectTo: 'home',
     pathMatch: 'full'
   },
+
 ];
 
 @NgModule({
