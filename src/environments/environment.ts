@@ -11,7 +11,9 @@ export const environment = {
   storageBucket: "fire-database-e3fa6.firebasestorage.app",
   messagingSenderId: "86123398212",
   appId: "1:86123398212:web:73a1ecbd3db8fb8eae6811"
-  }
+  },
+
+  baseUrl: 'http://localhost:3000'
 };
 
 /*
