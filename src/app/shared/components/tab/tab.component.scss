@@ -1,0 +1,70 @@
+ion-tab-bar {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.20);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: env(safe-area-inset-bottom);
+  transition: all 0.3s ease;
+  z-index: 10;
+  cursor: pointer; /* Para mostrar que es interactivo */
+}
+
+/* 🌙 Modo oscuro */
+@media (prefers-color-scheme: dark) {
+  ion-tab-bar {
+    background: rgba(30, 30, 30, 0.4);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* 💫 Efecto de sombra al pasar el puntero */
+ion-tab-bar:hover {
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.45);
+  transform: translateX(-50%) translateY(-2px);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* 🟦 Estilo de los botones */
+ion-tab-button {
+  color: #fff;
+  --color-selected: #4cafef;
+  --background: transparent;
+  transition: transform 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &.tab-selected {
+    ion-icon {
+      color: var(--color-selected);
+    }
+    color: var(--color-selected);
+  }
+}
+
+/* 🔘 Íconos */
+ion-icon {
+  font-size: 22px;
+}
+
+/* 🔤 Texto */
+ion-tab-button {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* 🌙 Ajuste del hover en modo oscuro */
+@media (prefers-color-scheme: dark) {
+  ion-tab-bar:hover {
+    background: rgba(40, 40, 40, 0.55);
+    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.8);
+  }
+}

@@ -79,6 +79,6 @@ try {
 //     res.status(500).send({error: error.message});
 //   }
 // });
+const PORT = process.env.PORT || 3000;
 
-
-app.listen(3000, ()=> console.log('Server is runnig on port http://localhost:3000'));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

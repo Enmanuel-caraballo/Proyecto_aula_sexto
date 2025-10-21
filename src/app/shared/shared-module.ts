@@ -8,9 +8,10 @@ import { SelectComponent } from './components/select/select.component';
 import { SideMenuComponent } from './components/sideMenu/side-menu.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RouterModule } from '@angular/router';
+import { TabComponent } from './components/tab/tab.component';
 
 const modules = [IonicModule, FormsModule, ReactiveFormsModule, RouterModule];
-const components = [InputComponent, ButtonComponent, SelectComponent, SideMenuComponent, HeaderComponent]
+const components = [InputComponent, ButtonComponent, SelectComponent, SideMenuComponent, HeaderComponent, TabComponent]
 @NgModule({
   declarations: [components],
   imports: [
