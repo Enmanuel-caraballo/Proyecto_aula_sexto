@@ -21,37 +21,37 @@ export class HomePage implements AfterViewInit {
 
   async ngAfterViewInit() {
 
-    this.coord = await this.geolocationSrv.getGeo();
+    // this.coord = await this.geolocationSrv.getGeo();
 
-    await this.loadGoogleMaps().then(() => {
-      this.loadMap();
-    }).catch(err => {
-      console.error('Error cargando Google Maps:', err);
-    });
+    // await this.loadGoogleMaps().then(() => {
+    //   this.loadMap();
+    // }).catch(err => {
+    //   console.error('Error cargando Google Maps:', err);
+    // });
 
-    // try {
+    try {
 
-    //   const resp = await Geolocation.requestPermissions();
+      const resp = await Geolocation.requestPermissions();
 
 
-    //   if (resp.location === 'granted' || resp.location === 'prompt') {
-    //     this.coord = await this.geolocationSrv.getGeo();
+      if (resp.location === 'granted' || resp.location === 'prompt') {
+        this.coord = await this.geolocationSrv.getGeo();
 
-    //   } else {
-    //     console.log('Permiso denegado');
-    //     return;
-    //   }
+      } else {
+        console.log('Permiso denegado');
+        return;
+      }
 
-    //   await this.loadGoogleMaps().then(() => {
-    //     this.loadMap();
-    //   }).catch(err => {
-    //     console.error('Error cargando Google Maps:', err);
-    //   });
+      await this.loadGoogleMaps().then(() => {
+        this.loadMap();
+      }).catch(err => {
+        console.error('Error cargando Google Maps:', err);
+      });
 
-    // } catch (error) {
-    //   console.log("PERMISSSIONS NOT GRANTED", error);
+    } catch (error) {
+      console.log("PERMISSSIONS NOT GRANTED", error);
 
-    // }
+    }
 
 
 
