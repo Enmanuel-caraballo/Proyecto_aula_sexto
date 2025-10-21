@@ -3,6 +3,7 @@ declare var google: any;
 import { Geolocation } from '@capacitor/geolocation';
 import { GeolocationSrv } from 'src/app/core/services/geolocation/geolocation-srv';
 import { ILocation } from 'src/app/interfaces/location.interface';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -20,37 +21,37 @@ export class HomePage implements AfterViewInit {
 
   async ngAfterViewInit() {
 
-    // this.coord = await this.geolocationSrv.getGeo();
+    this.coord = await this.geolocationSrv.getGeo();
 
-    // await this.loadGoogleMaps().then(() => {
-    //   this.loadMap();
-    // }).catch(err => {
-    //   console.error('Error cargando Google Maps:', err);
-    // });
+    await this.loadGoogleMaps().then(() => {
+      this.loadMap();
+    }).catch(err => {
+      console.error('Error cargando Google Maps:', err);
+    });
 
-    try {
+    // try {
 
-      const resp = await Geolocation.requestPermissions();
+    //   const resp = await Geolocation.requestPermissions();
 
 
-      if (resp.location === 'granted' || resp.location === 'prompt') {
-        this.coord = await this.geolocationSrv.getGeo();
+    //   if (resp.location === 'granted' || resp.location === 'prompt') {
+    //     this.coord = await this.geolocationSrv.getGeo();
 
-      } else {
-        console.log('Permiso denegado');
-        return;
-      }
+    //   } else {
+    //     console.log('Permiso denegado');
+    //     return;
+    //   }
 
-      await this.loadGoogleMaps().then(() => {
-        this.loadMap();
-      }).catch(err => {
-        console.error('Error cargando Google Maps:', err);
-      });
+    //   await this.loadGoogleMaps().then(() => {
+    //     this.loadMap();
+    //   }).catch(err => {
+    //     console.error('Error cargando Google Maps:', err);
+    //   });
 
-    } catch (error) {
-      console.log("PERMISSSIONS NOT GRANTED", error);
+    // } catch (error) {
+    //   console.log("PERMISSSIONS NOT GRANTED", error);
 
-    }
+    // }
 
 
 
@@ -67,7 +68,7 @@ export class HomePage implements AfterViewInit {
 
       // etiqueta <script>
       const script = document.createElement('script');
-      script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDa2oZbyzPVNxAu1lPCnNgmyf_pvLI1Phw';
+      script.src = 'https://maps.googleapis.com/maps/api/js?key=',`${environment.MAPS_API_Key}`;
       script.async = true;
       script.defer = true;
 
