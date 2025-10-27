@@ -12,6 +12,8 @@ import { provideAuth, getAuth} from '@angular/fire/auth'
    provideFirebaseApp(() => initializeApp(environment.FIREBASE_CONFIG)),
    provideFirestore(() => getFirestore()),
    provideAuth(() => getAuth()),
+   
+
   ],
   imports: [
     CommonModule
