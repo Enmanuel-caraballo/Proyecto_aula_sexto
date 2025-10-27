@@ -89,13 +89,13 @@
       </ion-row>
 
       <h2 class="section-title">Cerrar sesión</h2>
-      <div class="section-box">
+      <div class="section-box plain">
         <ion-row>
           <ion-col>
             <app-button
               type="submit"
               color="primary"
-              (click)="logOut"
+              (click)="logOut()"
               value="Salir">
             </app-button>
           </ion-col>
@@ -106,7 +106,7 @@
   </form>
 
   <h2 class="section-title">Eliminar cuenta</h2>
-  <div class="section-box danger">
+  <div class="section-box danger plain">
     <app-button
       type="submit"
       color="danger"
