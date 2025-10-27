@@ -54,10 +54,11 @@ export class Auth {
     if (user) {
       const uid = user.uid;
       this.globalSrv.setUid(uid);
-      console.log(user.email);
+      this.router.navigate(['/user-setting'])
 
     }else{
       console.log("No hay usuario logeado");
+      this.router.navigate(['/login'])
   }
 }
 

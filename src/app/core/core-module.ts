@@ -5,12 +5,15 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { provideAuth, getAuth} from '@angular/fire/auth'
 
+
 @NgModule({
   declarations: [],
   providers: [
    provideFirebaseApp(() => initializeApp(environment.FIREBASE_CONFIG)),
    provideFirestore(() => getFirestore()),
    provideAuth(() => getAuth()),
+   
+
   ],
   imports: [
     CommonModule

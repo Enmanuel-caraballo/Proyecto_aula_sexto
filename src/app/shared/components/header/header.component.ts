@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-header',
@@ -8,8 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent  implements OnInit {
 
-  constructor() { }
+  constructor(private readonly navSrv: NavController) { }
+
 
   ngOnInit() {}
+
+  goBack(){
+    this.navSrv.back();
+  }
 
 }
