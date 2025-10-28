@@ -1,41 +1,35 @@
-/* Page background white and readable text */
+/* ========== BASE COLORS (Nueva paleta cálida) ========== */
 ion-content {
   --background: #ffffff;
   color: #0f172a;
 
-  /* ocean (waves) */
-  --brand-ocean-1: #0e7490;  /* teal 700 */
-  --brand-ocean-2: #1e3a8a;  /* blue 800 */
-  /* sun (sunset) */
-  --brand-sun-1: #f59e0b;    /* amber 500 */
-  --brand-sun-2: #fbbf24;    /* amber 400 */
-  /* neutrals */
-  --brand-muted: #64748b;
+  /* paleta cálida */
+  --brand-red: #E63946;    /* rojo vivo */
+  --brand-orange: #F77F00; /* naranja fuerte */
+  --brand-gold: #FFB703;   /* dorado cálido */
+  --brand-muted: #64748b;  /* gris para texto secundario */
 }
 
-/* Flatten ion-card; spacing handled by sections */
+/* ========== CARD BASES ========== */
 ion-card {
   background: transparent;
   box-shadow: none;
-  margin: 0;
-  padding: 0;
 }
 
-/* Sunset gradient title */
+/* ========== TITULOS CON GRADIENTE ========== */
 .section-title {
   margin: 32px 16px 12px;
   font-weight: 700;
   font-size: 15px;
   letter-spacing: 0.2px;
 
-  background: linear-gradient(90deg, var(--brand-sun-2), var(--brand-sun-1));
+  background: linear-gradient(90deg, var(--brand-gold), var(--brand-orange), var(--brand-red));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-shadow: none; /* crisp gradient text */
 }
 
-/* Soft transparent white cards with ocean accent and top stripe */
+/* ========== TARJETAS SUAVES (MÓDULOS) ========== */
 .section-box {
   margin: 0 16px 20px;
   background: rgba(255, 255, 255, 0.9);
@@ -44,35 +38,23 @@ ion-card {
   padding: 14px;
   box-shadow: 0 8px 20px rgba(2, 6, 23, 0.06);
   transition: border-color .2s ease, box-shadow .2s ease;
-
   position: relative;
-  overflow: hidden; /* NEW: clip the stripe to the rounded corners */
-}
-/* Replace the old top stripe with a curved one that matches the radius */
-.section-box::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 16px;                 /* match the card’s border-radius area */
-  border-radius: inherit;       /* follow the same rounded corners */
-  background: linear-gradient(90deg, var(--brand-ocean-1), var(--brand-ocean-2), var(--brand-sun-1));
-  background-repeat: no-repeat;
-  background-position: top left;
-  background-size: 100% 3px;    /* visible line thickness */
-  pointer-events: none;
-}
-.section-box:hover {
-  background: rgba(255, 255, 255, 0.95);
-  border-color: rgba(14, 116, 144, 0.4);
-  box-shadow: 0 12px 28px rgba(2, 6, 23, 0.12);
+  overflow: hidden;
 }
 
-/* Remove inner lines; use gaps */
+
+.section-box:hover {
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(247, 127, 0, 0.4);
+  box-shadow: 0 12px 28px rgba(247, 127, 0, 0.15);
+}
+
+/* Limpieza visual interna */
 .section-box ion-row { padding: 0; }
 .section-box ion-row + ion-row { margin-top: 12px; border-top: 0 !important; }
 .section-box ion-col { padding: 0; }
 
-/* Inputs: same size, light outline, small radius */
+/* ========== CAMPOS DE FORMULARIO ========== */
 app-input,
 app-select {
   display: block;
@@ -85,15 +67,19 @@ app-select {
   box-shadow: 0 1px 4px rgba(2, 6, 23, 0.04);
   transition: border-color .15s ease, box-shadow .15s ease;
 }
+
 app-input:hover,
-app-select:hover { border-color: #cbd5e1; }
-app-input:focus-within,
-app-select:focus-within {
-  border-color: var(--brand-ocean-1);
-  box-shadow: 0 0 0 3px rgba(14, 116, 144, 0.18);
+app-select:hover {
+  border-color: #fcbf49; /* dorado suave */
 }
 
-/* Flatten Ionic inner underline */
+app-input:focus-within,
+app-select:focus-within {
+  border-color: var(--brand-orange);
+  box-shadow: 0 0 0 3px rgba(247, 127, 0, 0.18);
+}
+
+/* Quita líneas internas de Ionic */
 ::ng-deep app-input ion-item,
 ::ng-deep app-select ion-item {
   --inner-border-width: 0;
@@ -103,6 +89,7 @@ app-select:focus-within {
   --border-color: transparent;
   padding: 0;
 }
+
 ::ng-deep app-input ion-input,
 ::ng-deep app-input input,
 ::ng-deep app-select ion-select,
@@ -113,91 +100,84 @@ app-select:focus-within {
   box-shadow: none !important;
   color: #0f172a;
 }
+
 ::ng-deep app-input input::placeholder,
-::ng-deep app-select select::placeholder { color: #94a3b8; }
+::ng-deep app-select select::placeholder {
+  color: #94a3b8;
+}
+
 ::ng-deep app-input ion-label,
-::ng-deep app-select ion-label { color: var(--brand-muted); }
+::ng-deep app-select ion-label {
+  color: var(--brand-muted);
+}
 
-/* Buttons inside modules full width */
-.section-box app-button { display: block; width: 100%; }
+/* ========== BOTONES ========== */
+.section-box app-button {
+  display: block;
+  width: 100%;
+}
 
-/* Primary buttons: ocean gradient */
+/* Botones principales */
 .section-box app-button[color="primary"],
 ion-row.action-row app-button[color="primary"] {
-  background: linear-gradient(135deg, var(--brand-ocean-1), var(--brand-ocean-2));
+  background: linear-gradient(135deg, var(--brand-red), var(--brand-orange), var(--brand-gold));
   color: #ffffff;
   border: 0;
   border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(30, 58, 138, 0.25);
+  box-shadow: 0 8px 20px rgba(247, 127, 0, 0.25);
   transition: transform .06s ease, filter .15s ease, box-shadow .15s ease;
 }
+
 .section-box app-button[color="primary"]:hover,
 ion-row.action-row app-button[color="primary"]:hover {
-  filter: brightness(1.05);
-  box-shadow: 0 10px 24px rgba(30, 58, 138, 0.3);
+  filter: brightness(1.07);
+  box-shadow: 0 10px 24px rgba(247, 127, 0, 0.35);
 }
+
 .section-box app-button[color="primary"]:active,
 ion-row.action-row app-button[color="primary"]:active {
   transform: translateY(1px);
 }
 
-/* Danger buttons: warm red gradient */
+/* Botones de peligro */
 .section-box.danger app-button[color="danger"] {
   background: linear-gradient(135deg, #ef4444, #dc2626);
   color: #ffffff;
-  border: 0;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(220, 38, 38, 0.25);
 }
 
-/* Footer link in ocean color */
-.auth-footer { width: calc(100% - 32px); margin: 10px 16px 40px; }
-.auth-footer a {
-  color: inherit !important;       /* remove teal color */
-  text-decoration: none;           /* keep it plain */
-}
-.auth-footer a:hover {
-  text-decoration: underline;      /* optional: underline on hover */
+/* ========== FOOTER DE LOGIN O LINKS ========== */
+.auth-footer {
+  width: calc(100% - 32px);
+  margin: 10px 16px 40px;
 }
 
-/* Plain variant: sin fondo/blanco ni borde/ sombra para módulos de botones */
+.auth-footer a {
+  color: #0f172a !important;
+  text-decoration: none;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+
+/* ========== VARIANTE PLAIN (sin fondo, solo botones) ========== */
 .section-box.plain {
   background: transparent;
   border: 0;
   box-shadow: none;
-  padding: 0;                 /* quita el padding del card */
-  margin: 8px 16px 20px;      /* mantiene separación con el resto */
+  padding: 0;
+  margin: 8px 16px 20px;
   overflow: visible;
 }
-.section-box.plain::before { display: none; }  /* sin línea superior */
 
-/* Asegura que el botón ocupe el ancho y esté separado del título */
-.section-box.plain app-button { display: inline-block; width: auto; background: transparent !important; box-shadow: none !important; border: 0; }
-/* El host de botones (en cualquier card) no debe pintar fondos de color */
-.section-box app-button[color="primary"],
-.section-box.danger app-button[color="danger"],
-ion-row.action-row app-button[color="primary"] {
+.section-box.plain::before { display: none; }
+
+.section-box.plain app-button {
+  display: inline-block;
+  width: auto;
   background: transparent !important;
   box-shadow: none !important;
   border: 0;
 }
-
-/* Colorea SOLO el ion-button interno (sin barras detrás) */
-::ng-deep app-button[color="primary"] ion-button {
-  --background: linear-gradient(135deg, var(--brand-ocean-1), var(--brand-ocean-2));
-  --background-hover: linear-gradient(135deg, var(--brand-ocean-1), var(--brand-ocean-2));
-  --background-activated: linear-gradient(135deg, var(--brand-ocean-1), var(--brand-ocean-2));
-  --box-shadow: none;
-  border-radius: 12px;
-  height: 44px;
-}
-::ng-deep .section-box.danger app-button[color="danger"] ion-button {
-  --background: linear-gradient(135deg, #ef4444, #dc2626);
-  --background-hover: linear-gradient(135deg, #ef4444, #dc2626);
-  --background-activated: linear-gradient(135deg, #ef4444, #dc2626);
-  --box-shadow: none;
-  border-radius: 12px;
-  height: 44px;
-}
-
-/* Mantén los demás estilos sin cambios */
