@@ -68,10 +68,6 @@ app-select {
   transition: border-color .15s ease, box-shadow .15s ease;
 }
 
-app-input:hover,
-app-select:hover {
-  border-color: #fcbf49; /* dorado suave */
-}
 
 app-input:focus-within,
 app-select:focus-within {
@@ -180,4 +176,26 @@ ion-row.action-row app-button[color="primary"]:active {
   background: transparent !important;
   box-shadow: none !important;
   border: 0;
+}
+
+.logOut-botton{
+  color: red;
+}
+
+/* Mensajes de formulario */
+.field-error small,
+.form-error small {
+  color: #dc2626; /* rojo error */
+  font-size: 11px;
+  display: block;
+  margin-top: 4px;
+  letter-spacing: .3px;
+}
+
+.form-success small {
+  color: #16a34a; /* verde éxito */
+  font-size: 11px;
+  display: block;
+  margin-top: 6px;
+  letter-spacing: .3px;
 }

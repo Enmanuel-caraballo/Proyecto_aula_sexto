@@ -13,6 +13,7 @@ export class LoginPage implements OnInit {
   email!: FormControl;
   password!: FormControl;
   loginForm!: FormGroup;
+  loginError: string = '';
 
   constructor(private readonly authSrv: Auth) {
     this.initForm();
@@ -21,9 +22,20 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  onLogin(){
-    console.log(this.loginForm.value);
-    this.authSrv.login(this.email.value, this.password.value);
+  async onLogin(){
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
+      this.loginError = 'Debes llenar todos los campos.';
+      return;
+    }
+
+    try{
+      console.log(this.loginForm.value);
+      await this.authSrv.login(this.email.value, this.password.value);
+      this.loginError = '';
+    }catch(e:any){
+      this.loginError = 'Usuario o contraseña incorrecta.';
+    }
   }
 
   private initForm(){

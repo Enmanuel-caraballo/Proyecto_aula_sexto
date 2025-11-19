@@ -16,6 +16,8 @@ export class RegisterPage implements OnInit {
   email!: FormControl;
   password!: FormControl;
   registerForm!: FormGroup;
+  registerSuccess: boolean = false;
+  registerError: string = '';
 
   constructor(private readonly userSrv: User) {
     this.initForm();
@@ -25,8 +27,22 @@ export class RegisterPage implements OnInit {
   }
 
   async doRegister(){
-    console.log(this.registerForm.value);
-    await this.userSrv.create(this.registerForm.value);
+    if (this.registerForm.invalid) {
+      this.registerForm.markAllAsTouched();
+      this.registerError = 'Debes llenar todos los campos.';
+      this.registerSuccess = false;
+      return;
+    }
+
+    try {
+      console.log(this.registerForm.value);
+      await this.userSrv.create(this.registerForm.value);
+      this.registerSuccess = true;
+      this.registerError = '';
+    } catch (e:any) {
+      this.registerError = e?.message || 'Error en el registro.';
+      this.registerSuccess = false;
+    }
   }
 
 

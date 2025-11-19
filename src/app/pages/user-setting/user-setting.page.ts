@@ -20,6 +20,10 @@ export class UserSettingsPage implements OnInit {
   email!: FormControl;
   password!: FormControl;
   modifyForm!: FormGroup;
+  modifySuccess: boolean = false;
+  modifyError: string = '';
+  logoutSuccess: boolean = false;
+  logoutError: string = '';
 
   constructor(
     private readonly crudSrv: Crud,
@@ -70,8 +74,21 @@ export class UserSettingsPage implements OnInit {
   }
 
   async modifyUser(){
-    const uid = await this.uidSrv.getUid();
-    await this.crudSrv.modify('users', uid, this.modifyForm.value)
+    if (this.modifyForm.invalid) {
+      this.modifyForm.markAllAsTouched();
+      this.modifyError = 'Debes llenar todos los campos.';
+      this.modifySuccess = false;
+      return;
+    }
+    try {
+      const uid = await this.uidSrv.getUid();
+      await this.crudSrv.modify('users', uid, this.modifyForm.value)
+      this.modifySuccess = true;
+      this.modifyError = '';
+    } catch(e:any){
+      this.modifyError = e?.message || 'Error al modificar.';
+      this.modifySuccess = false;
+    }
   }
 
   async deleteUser(){
@@ -84,10 +101,14 @@ export class UserSettingsPage implements OnInit {
   }
 
   async logOut(){
-   await this.authSrv.logOut();
-
-   const hola = await this.authSrv.getCurrentUser();
-    console.log(hola);
+    try {
+      await this.authSrv.logOut();
+      this.logoutSuccess = true;
+      this.logoutError = '';
+    } catch(e:any){
+      this.logoutError = e?.message || 'Error al cerrar sesión.';
+      this.logoutSuccess = false;
+    }
 
   }
 

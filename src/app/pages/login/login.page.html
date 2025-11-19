@@ -1,62 +1,60 @@
 <ion-content [fullscreen]="true">
-   <div class="form-wrapper" >
   <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-
     <ion-card>
-
+      <h2 class="section-title">Iniciar sesión</h2>
+      <div class="section-box gold-border">
         <ion-row>
           <ion-col>
             <app-input
-            type="email"
-            label="Email"
-            placeholder="exampleEmail@gmail.com"
-            labelPlacement="floating"
-            [control]="email"
-            >
+              type="email"
+              label="Email"
+              placeholder="exampleEmail@gmail.com"
+              labelPlacement="floating"
+              [control]="email">
             </app-input>
+            <div class="field-error" *ngIf="email.touched && email.invalid">
+              <small *ngIf="email.errors?.['required']">El correo es obligatorio.</small>
+              <small *ngIf="email.errors?.['email']">Formato de correo inválido.</small>
+            </div>
           </ion-col>
         </ion-row>
-
-
         <ion-row>
           <ion-col>
             <app-input
-            type="password"
-            label="Password"
-            placeholder="**************"
-            labelPlacement="floating"
-            [control]="password"
-            >
-
+              type="password"
+              label="Password"
+              placeholder="**************"
+              labelPlacement="floating"
+              [control]="password">
             </app-input>
-            </ion-col>
+            <div class="field-error" *ngIf="password.touched && password.invalid">
+              <small *ngIf="password.errors?.['required']">La contraseña es obligatoria.</small>
+              <small *ngIf="password.errors?.['minlength']">Mínimo {{password.errors?.['minlength']?.requiredLength}} caracteres.</small>
+            </div>
+          </ion-col>
         </ion-row>
-
-        <ion-row>
+        <ion-row class="action-row">
           <ion-col>
-
             <app-button
-            type="submit"
-            color="primary"
-            [disabled]="loginForm.invalid"
-            value="Log in">
+              type="submit"
+              color="primary"
+              [disabled]="loginForm.invalid"
+              value="Log in">
             </app-button>
-
-            </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col>
-            <a routerLink="/register">
-              ¿No tienes una cuenta? crea una aquí.
-            </a>
+            <div class="form-error" *ngIf="loginForm.touched && loginForm.invalid">
+              <small>Debes llenar todos los campos correctamente.</small>
+            </div>
+            <div class="form-error" *ngIf="loginError && loginForm.valid">
+              <small>{{loginError}}</small>
+            </div>
           </ion-col>
         </ion-row>
-
+      </div>
+      <div class="auth-footer">
+        <a routerLink="/register">¿No tienes una cuenta? crea una aquí.</a>
+      </div>
     </ion-card>
-
   </form>
-</div>
 </ion-content>
 
 <app-tab></app-tab>
