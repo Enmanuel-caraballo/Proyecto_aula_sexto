@@ -85,8 +85,7 @@
             (click)="modifyUser()"
             value="Modificar">
           </app-button>
-          <div class="form-success" *ngIf="modifySuccess"><small>Datos modificados.</small></div>
-          <div class="form-error" *ngIf="modifyError"><small>{{modifyError}}</small></div>
+          <!-- Toasts will provide feedback; remove inline messages -->
         </ion-col>
       </ion-row>
 
@@ -99,8 +98,7 @@
               (click)="logOut()"
               value="Salir">
             </app-button>
-            <div class="form-success" *ngIf="logoutSuccess"><small>Sesión cerrada.</small></div>
-            <div class="form-error" *ngIf="logoutError"><small>{{logoutError}}</small></div>
+              <!-- Toasts will provide feedback; remove inline messages -->
           </ion-col>
         </ion-row>
       </div>
@@ -114,7 +112,7 @@
       type="submit"
       color="danger"
       value="Delete user"
-      (click)="deleteUser()">
+      (click)="confirmDeleteUser()">
     </app-button>
   </div>
 </ion-content>

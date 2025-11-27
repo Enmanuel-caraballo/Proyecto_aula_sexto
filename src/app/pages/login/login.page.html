@@ -44,9 +44,7 @@
             <div class="form-error" *ngIf="loginForm.touched && loginForm.invalid">
               <small>Debes llenar todos los campos correctamente.</small>
             </div>
-            <div class="form-error" *ngIf="loginError && loginForm.valid">
-              <small>{{loginError}}</small>
-            </div>
+            <!-- Toasts will show errors instead of inline messages -->
           </ion-col>
         </ion-row>
       </div>

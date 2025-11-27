@@ -14,10 +14,7 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
   },
-  {
-    path: 'user-settings',
-    loadChildren: () => import('./pages/user-settings/user-settings.module').then( m => m.UserSettingsPageModule)
-  },
+  
   {
     path: 'smart-chat',
     loadChildren: () => import('./pages/smart-chat/smart-chat.module').then( m => m.SmartChatPageModule)
