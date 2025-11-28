@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/shared/services/user/user';
+import { ToastService } from 'src/app/shared/services/toast.service';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +20,7 @@ export class RegisterPage implements OnInit {
   registerSuccess: boolean = false;
   registerError: string = '';
 
-  constructor(private readonly userSrv: User) {
+  constructor(private readonly userSrv: User, private readonly toast: ToastService) {
     this.initForm();
   }
 
@@ -31,6 +32,7 @@ export class RegisterPage implements OnInit {
       this.registerForm.markAllAsTouched();
       this.registerError = 'Debes llenar todos los campos.';
       this.registerSuccess = false;
+      await this.toast.error(this.registerError);
       return;
     }
 
@@ -39,9 +41,11 @@ export class RegisterPage implements OnInit {
       await this.userSrv.create(this.registerForm.value);
       this.registerSuccess = true;
       this.registerError = '';
+      await this.toast.success('Registro exitoso');
     } catch (e:any) {
       this.registerError = e?.message || 'Error en el registro.';
       this.registerSuccess = false;
+      await this.toast.error(this.registerError);
     }
   }
 

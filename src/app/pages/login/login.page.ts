@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { getAuth } from '@angular/fire/auth';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Auth } from 'src/app/core/providers/auth/auth';
+import { ToastService } from 'src/app/shared/services/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginPage implements OnInit {
   loginForm!: FormGroup;
   loginError: string = '';
 
-  constructor(private readonly authSrv: Auth) {
+  constructor(private readonly authSrv: Auth, private readonly toast: ToastService) {
     this.initForm();
    }
 
@@ -26,15 +27,17 @@ export class LoginPage implements OnInit {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
       this.loginError = 'Debes llenar todos los campos.';
+      await this.toast.error(this.loginError);
       return;
     }
 
-    try{
-      console.log(this.loginForm.value);
-      await this.authSrv.login(this.email.value, this.password.value);
+    const ok = await this.authSrv.login(this.email.value, this.password.value);
+    if (ok) {
       this.loginError = '';
-    }catch(e:any){
+      await this.toast.success('Inicio de sesión exitoso');
+    } else {
       this.loginError = 'Usuario o contraseña incorrecta.';
+      await this.toast.error(this.loginError);
     }
   }
 

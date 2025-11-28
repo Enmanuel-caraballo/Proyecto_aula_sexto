@@ -28,12 +28,14 @@ export class Auth {
       const resp = await signInWithEmailAndPassword(this.authFirebase, email, password);
       if (resp) {
         this.router.navigate(['/home']);
-      }
-      console.log(resp);
 
+        console.log(resp);
+        return true;
+      }
+      return false;
     } catch (error) {
       console.log((error as any).message);
-
+      return false;
     }
   }
 
