@@ -27,10 +27,15 @@ const routes: Routes = [
     loadChildren: () => import('./pages/user-setting/user-setting.module').then( m => m.UserSettingPageModule)
   },
   {
+    path: 'qrscanner',
+    loadChildren: () => import('./pages/qrscanner/qrscanner.module').then( m => m.QRscannerPageModule)
+  },
+  {
     path: '**',
     redirectTo: 'home',
     pathMatch: 'full'
   },
+
 
 ];
 

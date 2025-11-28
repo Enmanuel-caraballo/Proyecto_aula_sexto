@@ -2,7 +2,7 @@ import { registerPlugin } from "@capacitor/core";
 
 
 export interface IGooglePayPlugin {
-  execute: ( data: {uuid: string}) => Promise<{message: string}>
+  makePayment: () => Promise<{token: string}>
 }
 
 const googlePayPlugin = registerPlugin<IGooglePayPlugin>('GooglePayPlugin')

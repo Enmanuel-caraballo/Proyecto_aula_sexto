@@ -20,16 +20,16 @@ export class TabComponent  implements OnInit {
   }
 
 
-  async callPayPlugin(){
-    try {
-     const resp = await googlePayPlugin.execute({
-      uuid: "Prueba plugin"
-     });
-     console.log('Plugin Ionic', JSON.stringify(resp));
+  // async callPayPlugin(){
+  //   try {
+  //    const resp = await googlePayPlugin.execute({
+  //     uuid: "Prueba plugin"
+  //    });
+  //    console.log('Plugin Ionic', JSON.stringify(resp));
 
-    } catch (error) {
-      console.log('Err llamada del plugin', error);
+  //   } catch (error) {
+  //     console.log('Err llamada del plugin', error);
 
-    }
-  }
+  //   }
+  // }
 }

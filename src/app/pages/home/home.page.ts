@@ -45,7 +45,8 @@ export class HomePage implements AfterViewInit {
 
       this.coord = coord;
       this.updateUserPosition(this.coord);
-      this.userMarker.setCenter(new google.maps.LatLng(coords.latitude, coords.longitude));
+     // this.userMarker.setCenter(new google.maps.LatLng(coords.latitude, coords.longitude));
+      this.userMarker.setPosition(new google.maps.LatLng(coords.latitude, coords.longitude));
     })
 
 
